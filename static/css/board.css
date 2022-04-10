@@ -1,0 +1,356 @@
+.wrap_inner{
+    position: relative;
+    width: 1450px;
+    margin: 0 auto;
+}
+.page_head h2{
+
+    margin: -2px 8px 0 3px;
+    font-size: 24px;
+    font-family: 'Nanum Gothic', sans-serif;
+    letter-spacing: -1px;
+    max-width: 416px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #29367c;
+}
+#container{
+    margin: 20px auto 0;
+    width: 1160px;
+}
+.left_content{
+    width: 840px;
+    float: inherit;
+    background: #ffffff;
+}
+header, article{
+    display: block;
+}
+.page_head{
+    height: 37px;
+    margin-bottom: 3px;
+    padding-top: 4px;
+}
+.fl{
+    float: left;
+}
+.issue_wrap{
+    padding-bottom: 0;
+    position: relative;
+    border-top: 2px solid #29367c;
+    z-index: 13;
+}
+.issuebox{
+    width: 840px;
+    display: block;
+    margin-bottom: 15px;
+    background: #ffffff;
+}
+.newvisit_history{
+    position: relative;
+    width: 840px;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 66px 0 12px;
+    background: #f3f3f3;
+    vertical-align: top;
+    box-sizing: border-box;
+    color: #444;
+}
+.newvisit_history .tit{
+    float: left;
+    font-size: 12px;
+    color: #29367c;
+    vertical-align: top;
+    letter-spacing: -0.075rem;
+}
+.newvisit_box{
+    overflow: hidden;
+    margin-left: 12px;
+    padding-left: 12px;
+}
+.newvisit_list{
+    position: relative;
+    white-space: nowrap;
+}
+li{
+    margin-left: 0px;
+    display: inline-block;
+    font-size: 12px;
+}
+.list_array_option{
+    display: table;
+    width: 840px;
+    height: 32px;
+    margin: 15px 0 5px;
+}
+.array_tab{
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: top;
+}
+.array_tab button{
+    width: 82px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-left: -2px;
+    background: #fff;
+    padding-bottom: 2px;
+}
+/*선택시*/
+.array_tab button.on{
+    border: 1px solid #29367c;
+    background: #3b4890;
+    color: #fff;
+    text-shadow: 0px -1px #1d2761;
+}
+.right_box{
+    position: relative;
+    z-index: 1;
+    float: right;
+    min-width: 90px;
+    height: 21px;
+    width: max-content;
+    vertical-align: top;
+    padding-top: 11px;
+}
+.output_array{
+    padding-top: 0;
+}
+.select_box{
+    margin: 0 2px 0 0;
+    position: relative;
+    float: left;
+}
+#sarray_numbers{
+    display: none;
+}
+.select_area{
+    padding: 0;
+    width: 51px;
+}
+.output_array.option_box{
+    padding: 6px 5px 4px;
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 20;
+}
+.option_box li{
+    line-height: 16px;
+    font-size: 11px;
+    color: #555;
+}
+.gall_listwrap{
+    position: relative;
+}
+.gall_list{
+    width: 100%;
+    border-bottom: 1px solid;
+    font-family: sans-serif;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+colgroup{
+    display: table-column-group;
+}
+thead, tr, tbody, a, h3, ul, button{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+    font-style: normal;
+}
+th{
+    height: 37px;
+    border-width: 2px 0 1px;
+    border-style: solid;
+    border-color: #29367c;
+    vertical-align: middle;
+    text-align: center;
+    color: #333;
+    font-family: sans-serif;
+}
+td{
+    vertical-align: middle;
+    text-align: center;
+    color: #333;
+}
+.gall_list td{
+    height: 25px;
+    border-top: none;
+    padding: 0px 4px;
+}
+.gall_num, .gall_tit, .gall_writer, .gall_date, .gall_count, .gall_recommend{
+    font-family: Tahoma, sans-serif;
+    font-size: 11px;
+    padding-top: 1px;
+}
+.gall_tit{
+    position: relative;
+    text-align: left;
+    font-size: 13px;
+}
+.gall_writer{
+    padding-top: 2px;
+}
+.list_bottom_btnbox{
+    margin-top: 12px;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.btn_blue{
+    background: #3b4890;
+    border-color: #29367c;
+    text-shadow: 0px -1px #1d2761;
+    color: #fff;
+}
+.list_bottom_btnbox div button{
+    width: 82px;
+    height: 35px;
+    line-height: 31px;
+}
+.bottom_paging_wrap{
+    display: inline-block;
+    width: 100%;
+    margin-top: 5px;
+    position: relative;
+    padding: 0 121px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+.bottom_paging_box{
+    margin-top: 3px;
+    padding-top: 6px;
+    position: relative;
+    margin-top: 18px;
+    text-align: center;
+    line-height: 20px;
+}
+.bottom_paging_box a{
+    display: inline-block;
+    margin-left: 9px;
+    font-size: 14px;
+    font-weight: bold;
+}
+fieldset{
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+}
+.buttom_search_wrap{
+    position: relative;
+    width: 451px;
+    margin: 20px auto 0;
+}
+.bottom_array{
+    width: 123px;
+    height: 36px;
+    border: 1px solid #29367c;
+    background: #3b4890;
+}
+.buttom_search_wrap .bottom_search{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.bottom_search{
+    height:36px;
+    margin-left: 5px;
+    border: 1px solid #29367c;
+    background: #3b4890;
+}
+select{
+    font-size: 12px;
+    font-family: sans-serif;
+    display: none;
+}
+.bottom_array .select_area{
+    display: block;
+    width: 109px;
+    height: 30px;
+    padding-left: 8px;
+    line-height: 30px;
+    margin: 3px 0 0 3px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #29367c;
+}
+.bottom_array .option_box{
+    width: 103px;
+    box-sizing: content-box;
+    padding: 6px 9px 5px;
+    border: 2px solid #29367c;
+    line-height: 21px;
+    font-size: 14px;
+    color: #29367c;
+}
+.bottom_search .inner_search{
+    margin: 3px 0 0 3px;
+}
+.inner_search{
+    width: 278px;
+    float: left;
+    background: #fff;
+}
+.in_keyword{
+    width: 260px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 9px;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+.bottom_search .bnt_search{
+    width: 37px;
+    height: 36px;
+    background-position: 0 -195px;
+}
+.blind{
+    display: none;
+}
+
+.newvisit_box ul li button{
+    display: none;
+}
+.newvisit_box .visit{
+    margin-right: 4px;
+    font-weight: bold;
+    padding: 0 5px;
+}
+.newvisit_box .visit a{
+    text-decoration: none;
+    color: #29367c;
+}
+.select_cate{
+    background-color: #29367c;
+    border-radius: 3px;
+}
+.select_cate_a{
+     color: #ffffff !important;
+
+}
