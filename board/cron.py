@@ -7,6 +7,7 @@ import datetime
 import time
 import requests
 import bs4
+import re
 
 #MongoDB 접근
 client = MongoClient('localhost', 27017)
@@ -54,8 +55,8 @@ def Theqoocraw():
             time = c.select_one(".board >.btm_area > div > span").text
             v = c.select_one(".theqoo_document_header >.count_container").text
             n = v.split()
-            viewers = n[0]
-            comments = n[1]
+            viewers = int(re.sub(r'[^0-9]', '', n[0]))
+            comments = int(n[1])
             writer = "무명의 더쿠"
             site = "더쿠"
             doc = {
@@ -73,11 +74,13 @@ def Theqoocraw():
             if nodata == 0:
                 if late != title:
                     db.Theqoo.insert_one(doc)
+                    db.All.insert_one(doc)
                     print("Data Insert")
                 else:
                     break
             else:
                 db.Theqoo.insert_one(doc)
+                db.All.insert_one(doc)
 
 
 def Fmkoreacraw():
@@ -106,8 +109,10 @@ def Fmkoreacraw():
             l = link_craw(links)
             writer = craw.select_one("div.li >div> span.author").text
             w = writer[3:]
-            viewer = l.select_one("div#bd_capture> div.rd_hd> div.board > div.btm_area> div:nth-child(2)>span:nth-child(1)>b").text
-            comments = l.select_one("div#bd_capture> div.rd_hd> div.board > div.btm_area> div:nth-child(2)>span:nth-child(3)>b").text
+            v = l.select_one("div#bd_capture> div.rd_hd> div.board > div.btm_area> div:nth-child(2)>span:nth-child(1)>b").text
+            viewer = int(v)
+            co = l.select_one("div#bd_capture> div.rd_hd> div.board > div.btm_area> div:nth-child(2)>span:nth-child(3)>b").text
+            comments = int(co)
             site = "에펨"
             c = craw.select_one("span.regdate")
             cs = c.find(text=lambda text:isinstance(text, bs4.Comment))
@@ -129,12 +134,14 @@ def Fmkoreacraw():
             if nodata == 0:
                 if late != links:
                     db.FMKorea.insert_one(doc)
+                    db.All.insert_one(doc)
                     print("Data Insert")
                     time.sleep(1)
                 elif(late == links):
                     break
             else:
                 db.FMKorea.insert_one(doc)
+                db.All.insert_one(doc)
                 time.sleep(1)
 
 def Humorunicraw():
@@ -158,7 +165,8 @@ def Humorunicraw():
         nodata = 0
     for i, craw in enumerate(mycraw):
         if i < 5:
-            comments = craw.select_one("td.li_sbj > a> span.list_comment_num").text[2:-1]
+            co = craw.select_one("td.li_sbj > a> span.list_comment_num").text[2:-1]
+            comments = int(co)
             craw.select_one("td.li_sbj > a").span.decompose()
             t = craw.select_one("td.li_sbj > a").text.strip()
 
@@ -167,7 +175,8 @@ def Humorunicraw():
             t1 = craw.select_one("td.li_date > span.w_date").text
             t2 = craw.select_one("td.li_date > span.w_time").text
             time = t1 +" "+ t2
-            viewers = craw.select_one("td:nth-child(5)").text.replace('\t', '').replace('\n', '')
+            vi = craw.select_one("td:nth-child(5)").text.replace('\t', '').replace('\n', '')
+            viewers = int(re.sub(r'[^0-9]', '', vi))
             writer = craw.select_one("td.li_icn> table> tbody> tr>td:nth-child(2)> span> span").text
             site = "웃긴대학"
             doc = {
@@ -183,11 +192,13 @@ def Humorunicraw():
             if nodata == 0:
                 if late != t:
                     db.Humoruni.insert_one(doc)
+                    db.All.insert_one(doc)
                     print("Data Insert")
                 else:
                     break
             else:
                 db.Humoruni.insert_one(doc)
+                db.All.insert_one(doc)
 
 def craw():
     Fmkoreacraw()

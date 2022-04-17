@@ -354,3 +354,10 @@ select{
      color: #ffffff !important;
 
 }
+.pointer{
+    cursor: Pointer !important;
+}
+
+a{
+    text-decoration-line: none !important;
+}
