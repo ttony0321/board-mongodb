@@ -1,0 +1,244 @@
+{% extends "board_list/base.html" %}
+{% block contents %}
+    <div class="wrap_inner">
+
+        <main id="container" class="listwrap clear">
+            <!-- left_content -->
+            <section class="left_content">
+
+                <!-- 갤리명 타이틀바 ~ 이용안내 -->
+
+                <header>
+                    <div class="page_head clear">
+                        <div class="fl clear">
+
+
+                            <h2 onclick="location.href='/'" style="cursor: pointer"><a>Board List</a></h2>
+
+
+                        </div>
+                    </div>
+                </header>
+                <article>
+
+                    <div class="issue_wrap">
+                        <div class="issuebox gallery_box">
+
+
+                            <!-- 최근방문 갤러리 -->
+                            <div class="newvisit_history" id="visit_history">
+                                <h3 class="tit" style="cursor: default">커뮤니티</h3>
+                                <div class="newvisit_box">
+                                    <ul class="newvisit_list ui-draggable ui-draggable-handle" style="left:0px;">
+                                        <li class="visit pointer" onclick="location.href='/'" style="cursor: pointer"><a
+                                                class="logClass" depth1="topframe"
+                                                depth2="gall_lately" depth3="mystery">All</a>
+                                            <button type="button" class="btn_visit_del" data-id="mystery"
+                                                    data-gtype="G"><span class="blind">삭제</span><em
+                                                    class="icon_visit_del"></em></button>
+                                        </li>
+                                        <li class="visit pointer" onclick="location.href='/theqoo/'"
+                                            style="cursor: pointer"><a
+                                                class="logClass" depth1="topframe"
+                                                depth2="gall_lately" depth3="mystery">Theqoo</a>
+                                            <button type="button" class="btn_visit_del" data-id="mystery"
+                                                    data-gtype="G"><span class="blind">삭제</span><em
+                                                    class="icon_visit_del"></em></button>
+                                        </li>
+                                        <li class="visit pointer" onclick="location.href='/humor/'"
+                                            style="cursor: pointer"><a
+                                                class="logClass" depth1="topframe"
+                                                depth2="gall_lately" depth3="mystery">Humoruni</a>
+                                            <button type="button" class="btn_visit_del" data-id="mystery"
+                                                    data-gtype="G"><span class="blind">삭제</span><em
+                                                    class="icon_visit_del"></em></button>
+                                        </li>
+                                        <li class="visit select_cate pointer" onclick="location.href='/fmkorea/'"
+                                            style="cursor: pointer"><a class="select_cate_a"
+                                                                       class="logClass" depth1="topframe"
+                                                                       depth2="gall_lately" depth3="mystery">Fmkorea</a>
+                                            <button type="button" class="btn_visit_del" data-id="mystery"
+                                                    data-gtype="G"><span class="blind">삭제</span><em
+                                                    class="icon_visit_del"></em></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article>
+
+
+                    <!--상단 탭-->
+                    <div class="list_array_option clear">
+                        <div class="array_tab left_box">
+                            <button type="button" class="on" onclick="listKindTab('all','list');return false;">최신순
+                            </button>
+
+                            {#                            <button type="button" class="" onclick="listKindTab('recommend','list');return false;">댓글순#}
+                            {#                            </button>#}
+                            {##}
+                            {##}
+                            {#                            <button type="button" class="" onclick="listKindTab('notice','list');return false;">조회순#}
+                            {#                            </button>#}
+                            <!--<button type="button" class="" onclick="listKindTab('movie','list');return false;">동영상</button>-->
+
+                        </div>
+                        {#                        <div class="right_box">#}
+                        {#                            <div class="output_array clear" style="display:block">#}
+                        {#                                <div class="select_box array_num">#}
+                        {#                                    <select name="numbers" id="sarray_numbers">#}
+                        {#                                        <option value="30">30개</option>#}
+                        {#                                        <option value="50">50개</option>#}
+                        {#                                        <option value="100">100개</option>#}
+                        {#                                    </select>#}
+                        {#                                    <div class="select_area"><a href="#"#}
+                        {#                                                                onclick="showLayer(this, 'listSizeLayer');return false;">50개<span#}
+                        {#                                            class="blind">페이지당 게시물 노출 옵션</span><em class="sp_img icon_option_more"></em></a>#}
+                        {#                                    </div>#}
+                        {#                                    <ul id="listSizeLayer" class="option_box" style="left:0;top:20px;display:none">#}
+                        {#                                        <li><a href="javascript:listDisp(30)">30개</a></li>#}
+                        {#                                        <li><a href="javascript:listDisp(50)">50개</a></li>#}
+                        {#                                        <li><a href="javascript:listDisp(100)">100개</a></li>#}
+                        {#                                    </ul>#}
+                        {#                                </div>#}
+                        {##}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                    </div>
+                    <!-- 갤러리 리스트 -->
+                    <div class="gall_listwrap list">
+                        <!-- 게시판형 갤러리 리스트-->
+                        <table class="gall_list">
+                            {#                            <caption>갤러리 리스트</caption>#}
+                            <colgroup>
+                                <col style="width:7%">
+                                <col>
+                                <col style="width:18%">
+                                <col style="width:6%">
+                                <col style="width:6%">
+                                <col style="width:6%">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th scope="col">사이트</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">작성일</th>
+                                <th scope="col">작성자</th>
+                                <th scope="col">조회</th>
+                                <th scope="col">댓글</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for post in f_l_posts %}
+                                <tr class="ub-content ">
+
+                                    <td class="gall_num">{{ post.site }}</td>
+
+                                    <td class="gall_tit ub-word"><a href={{ post.link }}
+                                    ><em
+                                            class="icon_img icon_survey"></em><b>{{ post.title }}</b></a></td>
+
+                                    <td class="gall_date"><b>{{ post.date }}</b>
+                                    </td>
+                                    <td class="gall_writer ub-write"
+                                        user_name={{ post.writer }}>{{ post.writer|truncatechars:4 }}</td>
+                                    <td class="gall_count">{{ post.viewers }}</td>
+                                    <td class="gall_recommend">{{ post.comments }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- //갤러리 리스트 -->
+
+                    <div class="list_bottom_btnbox">
+
+                    </div>
+                    <!-- 페이징 -->
+                    <div class="bottom_paging_wrap">
+                        <div class="bottom_paging_box iconpaging ">
+                            {% if f_l_posts.has_previous %}
+                                <a href="?page={{ f_l_posts.previous_page_number }}"
+                                   class="sp_pagingicon page_prev ">이전</a>
+                            {% else %}
+                                <a href="#"
+                                   class="sp_pagingicon page_prev" style="display: none">이전</a>
+                            {% endif %}
+                            {% for i in f_l_posts.paginator.page_range %}
+                                {% if i >= f_l_posts.number|add:-3 and i <= f_l_posts.number|add:3 %}
+                                    {% if i == f_l_posts.number %}
+                                        <em>{{ i }}</em>
+                                    {% else %}
+                                        <a href="?page={{ i }}">{{ i }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if f_l_posts.has_next %}
+                                <a href="?page={{ f_l_posts.next_page_number }}"
+                                   class="sp_pagingicon page_next">다음</a>
+                            {% else %}
+                                <a href="#"
+                                   class="sp_pagingicon page_next" style="display: none">다음</a>
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+                    <!-- //페이징 -->
+
+
+                    <!-- 갤러리 내 검색 -->
+                    <form action="" method="get">{% csrf_token %}
+                        <fieldset>
+                            <legend class="blind">갤러리 내부 검색</legend>
+                            <div class="buttom_search_wrap clear">
+                                <div class="select_box bottom_array fl">
+                                    <select id="search_type" name="search_type">
+                                        <option value="search_subject_memo">제목+내용</option>
+                                        <option value="search_subject">제목</option>
+                                        <option value="search_memo">내용</option>
+                                        <option value="search_name">글쓴이</option>
+                                        <option value="search_comment">댓글</option>
+                                    </select>
+                                    <div class="select_area" onclick="showLayer(this, 'searchTypeLayer');return false;">
+                                        <span id="search_type_txt">제목</span><span class="blind">게시물 정렬 옵션</span>
+                                        <span class="inner"><em class="sp_img icon_option_more"></em></span>
+                                    </div>
+                                    <ul id="searchTypeLayer" class="option_box" style="left:-1px;top:36px;display:none">
+                                        <li onclick="javascript:searchTypeSel('search_subject_memo')">제목+내용</li>
+                                        <li onclick="javascript:searchTypeSel('search_subject')">제목</li>
+                                        <li onclick="javascript:searchTypeSel('search_memo')">내용</li>
+                                        <li onclick="javascript:searchTypeSel('search_name')">글쓴이</li>
+                                        <li onclick="javascript:searchTypeSel('search_comment')">댓글</li>
+                                    </ul>
+                                </div>
+                                <div class="bottom_search fl clear">
+                                    <div class="inner_search">
+                                        <input class="in_keyword" type="text" name="mdb" title="검색어 입력"
+                                               id="search_mdb" placeholder="Search"
+                                               value="{{ mdb|default_if_none:'' }}">
+                                    </div>
+                                    <button class="sp_img bnt_search pointer"><span
+                                            class="blind">검색</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                             width="30" height="30"
+                                             viewBox="0 0 30 30"
+                                             style=" fill:#ffffff;">
+                                            <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </article>
+            </section>
+
+
+        </main>
+    </div>
+{% endblock %}
