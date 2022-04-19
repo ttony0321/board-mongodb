@@ -3,14 +3,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from selenium import webdriver
+import pymongo
 import datetime
 import time
 import requests
 import bs4
 import re
-
+id = 'ttony0321'
+password = 'pang0228!'
+url = 'mongodb+srv://'+id+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 #MongoDB 접근
-client = MongoClient('localhost', 27017)
+client = pymongo.MongoClient(url)
 db = client.boardList
 
 #utc 시간

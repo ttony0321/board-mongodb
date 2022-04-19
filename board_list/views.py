@@ -5,8 +5,11 @@ from pymongo import MongoClient
 from django.db.models import Q
 # Create your views here.
 
+id = 'ttony0321'
+password = 'pang0228!'
+url = 'mongodb+srv://'+id+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-client = MongoClient("localhost:27017")
+client = pymongo.MongoClient(url)
 db = client.boardList
 
 

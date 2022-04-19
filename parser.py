@@ -11,29 +11,59 @@ import datetime
 import bs4
 import os
 import re
+import pymongo
 import django
 
-
+id = 'ttony0321'
+password = 'pang0228!'
+url = 'mongodb+srv://'+id+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 #UTC 시간
 dt_utc = datetime.datetime.utcnow()
 
 #파이선 파일 위치
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-client = MongoClient('localhost', 27017)
+client = pymongo.MongoClient(url)
 db = client.boardList
+
+def create_index():
+    db.All.create_index('title')
+    db.All.create_index('link')
+    db.All.create_index('writer')
+    db.All.create_index('time')
+    db.All.create_index('site')
+    db.All.create_index('comments')
+    db.All.create_index('viewers')
+    db.All.create_index("createdAt", expireAfterSeconds=259200)
+    db.Theqoo.create_index('title')
+    db.Theqoo.create_index('link')
+    db.Theqoo.create_index('writer')
+    db.Theqoo.create_index('time')
+    db.Theqoo.create_index('site')
+    db.Theqoo.create_index('comments')
+    db.Theqoo.create_index('viewers')
+    db.Theqoo.create_index("createdAt", expireAfterSeconds=259200)
+    db.FMKorea.create_index('title')
+    db.FMKorea.create_index('link')
+    db.FMKorea.create_index('writer')
+    db.FMKorea.create_index('time')
+    db.FMKorea.create_index('site')
+    db.FMKorea.create_index('comments')
+    db.FMKorea.create_index('viewers')
+    db.FMKorea.create_index("createdAt", expireAfterSeconds=259200)
+    db.Humoruni.create_index('title')
+    db.Humoruni.create_index('link')
+    db.Humoruni.create_index('writer')
+    db.Humoruni.create_index('time')
+    db.Humoruni.create_index('site')
+    db.Humoruni.create_index('comments')
+    db.Humoruni.create_index('viewers')
+    db.Humoruni.create_index("createdAt", expireAfterSeconds=259200)
 
 #Create Index
 #Test
-# db.FMKorea.create_index('title')
-# db.FMKorea.create_index('link')
-# db.FMKorea.create_index('writer')
-# db.FMKorea.create_index('time')
-# db.FMKorea.create_index('site')
-# db.FMKorea.create_index('comments')
-# db.FMKorea.create_index('viewers')
-# db.FMKorea.create_index("createdAt", expireAfterSeconds=259200)
 
+print("끝")
 session = requests.Session()
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36",

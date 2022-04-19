@@ -3,19 +3,11 @@
     <div class="wrap_inner">
 
         <main id="container" class="listwrap clear">
-            <!-- left_content -->
             <section class="left_content">
-
-                <!-- 갤리명 타이틀바 ~ 이용안내 -->
-
                 <header>
                     <div class="page_head clear">
                         <div class="fl clear">
-
-
                             <h2 onclick="location.href='/'" style="cursor: pointer"><a>Board List</a></h2>
-
-
                         </div>
                     </div>
                 </header>
@@ -23,9 +15,6 @@
 
                     <div class="issue_wrap">
                         <div class="issuebox gallery_box">
-
-
-                            <!-- 최근방문 갤러리 -->
                             <div class="newvisit_history" id="visit_history">
                                 <h3 class="tit" style="cursor: default">커뮤니티</h3>
                                 <div class="newvisit_box">
@@ -69,9 +58,6 @@
                     </div>
                 </article>
                 <article>
-
-
-                    <!--상단 탭-->
                     <div class="list_array_option clear">
                         <div class="array_tab left_box">
                             <button type="button" onclick="location.href='/'" style="cursor: pointer">최신순
@@ -83,36 +69,10 @@
 
                             <button type="button" class="on" onclick="location.href='/all_view'" style="cursor: pointer">조회순
                             </button>
-                            <!--<button type="button" class="" onclick="listKindTab('movie','list');return false;">동영상</button>-->
-
                         </div>
-                        {#                        <div class="right_box">#}
-                        {#                            <div class="output_array clear" style="display:block">#}
-                        {#                                <div class="select_box array_num">#}
-                        {#                                    <select name="numbers" id="sarray_numbers">#}
-                        {#                                        <option value="30">30개</option>#}
-                        {#                                        <option value="50">50개</option>#}
-                        {#                                        <option value="100">100개</option>#}
-                        {#                                    </select>#}
-                        {#                                    <div class="select_area"><a href="#"#}
-                        {#                                                                onclick="showLayer(this, 'listSizeLayer');return false;">50개<span#}
-                        {#                                            class="blind">페이지당 게시물 노출 옵션</span><em class="sp_img icon_option_more"></em></a>#}
-                        {#                                    </div>#}
-                        {#                                    <ul id="listSizeLayer" class="option_box" style="left:0;top:20px;display:none">#}
-                        {#                                        <li><a href="javascript:listDisp(30)">30개</a></li>#}
-                        {#                                        <li><a href="javascript:listDisp(50)">50개</a></li>#}
-                        {#                                        <li><a href="javascript:listDisp(100)">100개</a></li>#}
-                        {#                                    </ul>#}
-                        {#                                </div>#}
-                        {##}
-                        {#                            </div>#}
-                        {#                        </div>#}
                     </div>
-                    <!-- 갤러리 리스트 -->
                     <div class="gall_listwrap list">
-                        <!-- 게시판형 갤러리 리스트-->
                         <table class="gall_list">
-                            {#                            <caption>갤러리 리스트</caption>#}
                             <colgroup>
                                 <col style="width:7%">
                                 <col>
@@ -153,12 +113,8 @@
                         </table>
 
                     </div>
-                    <!-- //갤러리 리스트 -->
-
                     <div class="list_bottom_btnbox">
-
                     </div>
-                    <!-- 페이징 -->
                     <div class="bottom_paging_wrap">
                         <div class="bottom_paging_box iconpaging ">
                             {% if a_posts.has_previous %}
@@ -186,14 +142,7 @@
                             {% endif %}
 
                         </div>
-
-
                     </div>
-
-                    <!-- //페이징 -->
-
-
-                    <!-- 갤러리 내 검색 -->
                     <form action="" method="get">{% csrf_token %}
                         <fieldset>
                             <legend class="blind">갤러리 내부 검색</legend>
