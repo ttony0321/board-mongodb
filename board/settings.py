@@ -15,6 +15,9 @@ from pathlib import Path
 # import mongoengine
 # mongoengine.connect(db='boardList', host='127.0.0.1', username='ttony0321', password='07241020')
 
+# MongoDB Atlas
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = os.path.dirname(BASE_DIR)
@@ -84,8 +87,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'boardList',
-        'HOST': '127.0.0.1',
-        'PORT': 27017,
+        'HOST': 'mongodb+srv://<<username>>:<<password>>@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+        'username': 'ttony0321',
+        'password': 'pang0228!',
     }
 }
 # MongoDB DATABASES
@@ -147,7 +151,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
