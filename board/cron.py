@@ -10,12 +10,16 @@ import time
 import requests
 import bs4
 import dns
+import dns.resolver
 import re
+dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers=['8.8.8.8']
+
 userid = quote_plus('ttony0321')
 password = quote_plus('pang0228!')
-url = 'mongodb+srv://' + userid + ':' + password + '@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+uri = 'mongodb+srv://' + userid + ':' + password + '@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 #MongoDB 접근
-client = pymongo.MongoClient(url)
+client = pymongo.MongoClient(uri)
 db = client.boardList
 
 #utc 시간
