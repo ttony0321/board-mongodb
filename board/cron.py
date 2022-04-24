@@ -9,6 +9,7 @@ import datetime
 import time
 import requests
 import bs4
+import dns
 import re
 userid = quote_plus('ttony0321')
 password = quote_plus('pang0228!')
