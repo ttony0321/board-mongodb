@@ -1,6 +1,7 @@
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
+from urllib.parse import quote_plus
 from pymongo import MongoClient
 from selenium import webdriver
 import pymongo
@@ -9,9 +10,9 @@ import time
 import requests
 import bs4
 import re
-id = 'ttony0321'
-password = 'pang0228!'
-url = 'mongodb+srv://'+id+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+userid = quote_plus('ttony0321')
+password = quote_plus('pang0228!')
+url = 'mongodb+srv://' + userid + ':' + password + '@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 #MongoDB 접근
 client = pymongo.MongoClient(url)
 db = client.boardList
@@ -207,3 +208,4 @@ def craw():
     Fmkoreacraw()
     Theqoocraw()
     Humorunicraw()
+    
