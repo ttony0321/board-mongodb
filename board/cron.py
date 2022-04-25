@@ -85,12 +85,13 @@ def Theqoocraw():
                 if late != title:
                     db.Theqoo.insert_one(doc)
                     db.All.insert_one(doc)
-                    print("Data Insert")
+                    print("Theqoo Data Insert")
                 else:
                     break
             else:
                 db.Theqoo.insert_one(doc)
                 db.All.insert_one(doc)
+                print("Theqoo Data Insert")
 
 
 def Fmkoreacraw():
@@ -145,7 +146,7 @@ def Fmkoreacraw():
                 if late != links:
                     db.FMKorea.insert_one(doc)
                     db.All.insert_one(doc)
-                    print("Data Insert")
+                    print("FM Data Insert")
                     time.sleep(1)
                 elif(late == links):
                     break
@@ -153,6 +154,7 @@ def Fmkoreacraw():
                 db.FMKorea.insert_one(doc)
                 db.All.insert_one(doc)
                 time.sleep(1)
+                print("FM Data Insert")
 
 def Humorunicraw():
     chrome_options = webdriver.ChromeOptions()
@@ -206,12 +208,13 @@ def Humorunicraw():
                 if late != t:
                     db.Humoruni.insert_one(doc)
                     db.All.insert_one(doc)
-                    print("Data Insert")
+                    print("Hu Data Insert")
                 else:
                     break
             else:
                 db.Humoruni.insert_one(doc)
                 db.All.insert_one(doc)
+                print("Hu Data Insert")
 
 def craw():
     Fmkoreacraw()
