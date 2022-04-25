@@ -18,7 +18,7 @@ dns.resolver.default_resolver.nameservers=['8.8.8.8']
 userid = quote_plus('ttony0321')
 password = quote_plus('pang0228%21')
 #uri = 'mongodb+srv://'+userid+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-uri = 'mongodb+srv://ttony0321:pang0228%21@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+uri = 'mongodb+srv://'+userid+':pang0228%21@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 #MongoDB 접근
 client = pymongo.MongoClient(uri)
 db = client.boardList
