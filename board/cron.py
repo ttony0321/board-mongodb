@@ -47,12 +47,12 @@ def Theqoocraw():
     nodata = 1
     check = db.Theqoo.find()
     c = list(check)
-    print(check)
+    #print(check)
     if (len(c) != 0):
         sort_db = db.Theqoo.find().sort("date", -1)
         late = sort_db[0]['title']
         nodata = 0
-        print(len(c))
+        #print(len(c))
     for i, craw in enumerate(my_craws):
         i += 1
         if (5 < i < 10):
@@ -105,7 +105,7 @@ def Fmkoreacraw():
         #sort_db = db.FMKorea.find().sort("createdAt", 1)
         sort_db = db.FMKorea.find().sort("date", -1)
         late = sort_db[0]['link']
-        print(late)
+        #print(late)
         nodata = 0
     for i, craw in enumerate(my_craws):
         i += 1
@@ -131,7 +131,7 @@ def Fmkoreacraw():
             #date = l.select_one("div#bd_capture> div.rd_hd> div.board > div.top_area>span").text[:11]
             date = datetime.date.today().strftime("%Y.%m.%d ")
             date_t = date + comment
-            print(date_t)
+            #print(date_t)
             doc = {
                 'title': tt,
                 'link': links,
@@ -221,4 +221,6 @@ def craw():
     Theqoocraw()
     Humorunicraw()
 
-craw()
+Humorunicraw()
+Fmkoreacraw()
+Theqoocraw()
