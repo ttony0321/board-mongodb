@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 #from board import cron
 from selenium import webdriver
 import re
-from . import cron
+import board.cron as cron
 
 
 

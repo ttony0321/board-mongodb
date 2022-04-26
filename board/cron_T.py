@@ -1,4 +1,4 @@
-from . import cron
+import board.cron as cron
 import re
 
 
