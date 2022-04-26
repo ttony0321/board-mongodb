@@ -1,4 +1,4 @@
-from board import cron
+from . import cron
 import time
 import bs4
 

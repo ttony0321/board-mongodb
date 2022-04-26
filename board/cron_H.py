@@ -1,9 +1,11 @@
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
-from board import cron
+#from board import cron
 from selenium import webdriver
 import re
+from . import cron
+
 
 
 def Humorunicraw():
