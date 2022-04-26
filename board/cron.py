@@ -22,7 +22,7 @@ userid = quote_plus('ttony0321')
 password = quote_plus(decoded)
 #uri = 'mongodb+srv://'+userid+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 uri = 'mongodb+srv://'+userid+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-print(uri)
+
 #MongoDB 접근
 client = pymongo.MongoClient(uri)
 db = client.boardList

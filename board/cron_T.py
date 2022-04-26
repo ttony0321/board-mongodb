@@ -1,7 +1,8 @@
 import re
+###절대경로
 import sys
-sys.path.append('/cron.py')
-from . import cron
+sys.path.append('/srv/board-mongodb/board')
+import cron
 
 def Theqoocraw():
     Theqoo_craw = cron.link_craw("https://theqoo.net/hot")
