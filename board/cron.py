@@ -9,16 +9,20 @@ import datetime
 import time
 import requests
 import bs4
-import dns
+import cryptocode
 import dns.resolver
 import re
+pk = 'test'
 dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers=['8.8.8.8']
+p = "YXHVLgufTw61*dbtsFqBtJ1ukRN6TJAXyyg==*5ercXsjzHkKU3/nRlZDd5w==*5CM90YKrCDhYrQ5HdMUk6w=="
+decoded = cryptocode.decrypt(p, pk)
 
 userid = quote_plus('ttony0321')
-password = quote_plus('pang0228%21')
+password = quote_plus(decoded)
 #uri = 'mongodb+srv://'+userid+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 uri = 'mongodb+srv://'+userid+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+print(uri)
 #MongoDB 접근
 client = pymongo.MongoClient(uri)
 db = client.boardList
@@ -39,188 +43,3 @@ def link_craw(url):
     # html1 = session.get()
     soup = BeautifulSoup(html, 'html.parser')
     return soup
-
-def Theqoocraw():
-    Theqoo_craw = link_craw("https://theqoo.net/hot")
-    my_craws = Theqoo_craw.select("tbody >tr")
-    url = ("https://theqoo.net")
-    nodata = 1
-    check = db.Theqoo.find()
-    c = list(check)
-    #print(check)
-    if (len(c) != 0):
-        sort_db = db.Theqoo.find().sort("date", -1)
-        late = sort_db[0]['title']
-        nodata = 0
-        #print(len(c))
-    for i, craw in enumerate(my_craws):
-        i += 1
-        if (5 < i < 10):
-            title = craw.select_one(".title > a>span").text
-            link = craw.select_one(".title > a")['href']
-            url_link = url+link
-            link_url = link_craw(url_link)
-            c = link_url.select_one(".rd_hd")
-            links = c.select_one(".board >div> .side >.link")['href']
-            time = c.select_one(".board >.btm_area > div > span").text
-            v = c.select_one(".theqoo_document_header >.count_container").text
-            n = v.split()
-            viewers = int(re.sub(r'[^0-9]', '', n[0]))
-            comments = int(n[1])
-            writer = "무명의 더쿠"
-            site = "더쿠"
-            doc = {
-                'title': title,
-                'link': links,
-                'writer':writer,
-                'viewers': viewers,
-                'date': time,
-                'site': site,
-                'comments': comments,
-                'createdAt': dt_utc
-            }
-            #print(late)
-            #print(title)
-            if nodata == 0:
-                if late != title:
-                    db.Theqoo.insert_one(doc)
-                    db.All.insert_one(doc)
-                    print("Theqoo Data Insert")
-                else:
-                    break
-            else:
-                db.Theqoo.insert_one(doc)
-                db.All.insert_one(doc)
-                print("Theqoo Data Insert")
-
-
-def Fmkoreacraw():
-    Fmkorea_craw = link_craw("https://www.fmkorea.com/best")
-    url = ("https://www.fmkorea.com/best")
-    my_craws = Fmkorea_craw.select("div.fm_best_widget >ul >li:nth-child(n+5)")
-    nodata = 1
-    check = db.FMKorea.find()
-    c = list(check)
-    if (len(c) != 0):
-        #sort_db = db.FMKorea.find().sort("createdAt", 1)
-        sort_db = db.FMKorea.find().sort("date", -1)
-        late = sort_db[0]['link']
-        #print(late)
-        nodata = 0
-    for i, craw in enumerate(my_craws):
-        i += 1
-        if (i < 6):
-
-            title = craw.select_one("div.li > h3.title> a").text
-            #tt = l.select_one("div#bd_capture> div.rd_hd> div.board > div.top_area>h1>span").text
-            t = title[:-6]
-            tt = t.lstrip()
-            link = craw.select_one("div.li > h3.title> a")['href']
-            links = url + link
-            l = link_craw(links)
-            writer = craw.select_one("div.li >div> span.author").text
-            w = writer[3:]
-            v = l.select_one("div#bd_capture> div.rd_hd> div.board > div.btm_area> div:nth-child(2)>span:nth-child(1)>b").text
-            viewer = int(v)
-            co = l.select_one("div#bd_capture> div.rd_hd> div.board > div.btm_area> div:nth-child(2)>span:nth-child(3)>b").text
-            comments = int(co)
-            site = "에펨"
-            c = craw.select_one("span.regdate")
-            cs = c.find(text=lambda text:isinstance(text, bs4.Comment))
-            comment = cs.replace('\t', '').replace('\n', '')
-            #date = l.select_one("div#bd_capture> div.rd_hd> div.board > div.top_area>span").text[:11]
-            date = datetime.date.today().strftime("%Y.%m.%d ")
-            date_t = date + comment
-            #print(date_t)
-            doc = {
-                'title': tt,
-                'link': links,
-                'writer': w,
-                'viewers': viewer,
-                'date': date_t,
-                'site': site,
-                'comments': comments,
-                'createdAt': dt_utc
-            }
-            if nodata == 0:
-                if late != links:
-                    db.FMKorea.insert_one(doc)
-                    db.All.insert_one(doc)
-                    print("FM Data Insert")
-                    time.sleep(1)
-                elif(late == links):
-                    break
-            else:
-                db.FMKorea.insert_one(doc)
-                db.All.insert_one(doc)
-                time.sleep(1)
-                print("FM Data Insert")
-
-def Humorunicraw():
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--single-process")
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
-    driver.get(url)
-
-    req = driver.page_source
-    soup = BeautifulSoup(req, 'html.parser')
-    mycraw = soup.select("#post_list > tbody > tr")
-    n_url = "http://web.humoruniv.com/board/humor/"
-
-    nodata = 1
-    check = db.Humoruni.find()
-    c = list(check)
-    if (len(c) != 0):
-        sort_db = db.Humoruni.find().sort("date", -1)
-        late = sort_db[0]['title']
-        nodata = 0
-    for i, craw in enumerate(mycraw):
-        if i < 5:
-            co = craw.select_one("td.li_sbj > a> span.list_comment_num").text[2:-1]
-            comments = int(co)
-            craw.select_one("td.li_sbj > a").span.decompose()
-            t = craw.select_one("td.li_sbj > a").text.strip()
-
-            sample_link = craw.select_one("td.li_sbj > a")["href"]
-            link = n_url + sample_link
-            t1 = craw.select_one("td.li_date > span.w_date").text
-            t2 = craw.select_one("td.li_date > span.w_time").text
-            time = t1 +" "+ t2
-            vi = craw.select_one("td:nth-child(5)").text.replace('\t', '').replace('\n', '')
-            viewers = int(re.sub(r'[^0-9]', '', vi))
-            writer = craw.select_one("td.li_icn> table> tbody> tr>td:nth-child(2)> span> span").text
-            site = "웃긴대학"
-            doc = {
-                'title':t,
-                'link': link,
-                'writer':writer,
-                'date': time,
-                'site': site,
-                'comments': comments,
-                'viewers': viewers,
-                'createdAt': dt_utc
-            }
-            if nodata == 0:
-                if late != t:
-                    db.Humoruni.insert_one(doc)
-                    db.All.insert_one(doc)
-                    print("Hu Data Insert")
-                else:
-                    break
-            else:
-                db.Humoruni.insert_one(doc)
-                db.All.insert_one(doc)
-                print("Hu Data Insert")
-
-def craw():
-    Fmkoreacraw()
-    Theqoocraw()
-    Humorunicraw()
-
-Humorunicraw()
-Fmkoreacraw()
-Theqoocraw()
