@@ -3,7 +3,7 @@ import time
 import bs4
 import sys
 sys.path.append('/cron.py')
-import board.cron as cron
+from . import cron
 def Fmkoreacraw():
     Fmkorea_craw = cron.link_craw("https://www.fmkorea.com/best")
     url = ("https://www.fmkorea.com/best")

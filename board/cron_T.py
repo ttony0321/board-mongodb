@@ -1,7 +1,7 @@
 import re
 import sys
 sys.path.append('/cron.py')
-import board.cron as cron
+from . import cron
 
 def Theqoocraw():
     Theqoo_craw = cron.link_craw("https://theqoo.net/hot")

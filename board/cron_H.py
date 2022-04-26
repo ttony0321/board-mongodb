@@ -6,7 +6,8 @@ from selenium import webdriver
 import re
 import sys
 sys.path.append('/cron.py')
-import board.cron as cron
+from . import cron
+
 
 
 def Humorunicraw():
