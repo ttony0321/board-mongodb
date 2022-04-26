@@ -16,8 +16,9 @@ def Humorunicraw():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
-    #chrome_options.add_argument("--single-process")
-    #chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument("--single-process")
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
     driver.get(url)
@@ -27,7 +28,7 @@ def Humorunicraw():
     soup = BeautifulSoup(req, 'html.parser')
     mycraw = soup.select("#post_list > tbody > tr")
     n_url = "http://web.humoruniv.com/board/humor/"
-
+    print('start')
     nodata = 1
     check = cron.db.Humoruni.find()
     c = list(check)
