@@ -21,6 +21,7 @@ def Humorunicraw():
     chrome_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
+    driver.get_cookies()
     driver.get(url)
 
     print(driver.current_url)
