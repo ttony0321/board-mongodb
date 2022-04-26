@@ -8,6 +8,7 @@ import re
 import sys
 sys.path.append('/srv/board-mongodb/board')
 import cron
+# import board.cron as cron
 
 
 
@@ -20,6 +21,7 @@ def Humorunicraw():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
     driver.get(url)
+    print(driver.current_url)
 
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
