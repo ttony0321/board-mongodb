@@ -25,7 +25,7 @@ def Humorunicraw():
     driver.get(url)
     cookies = driver.get_cookies()
     print(driver.current_url)
-    print(cookies)
+
     cookie_dict = {}
     for cookie in cookies:
         cookie_dict[cookie['name']] = cookie['value']
