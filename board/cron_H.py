@@ -1,7 +1,7 @@
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
-
+import requests
 from selenium import webdriver
 import re
 ###절대경로
@@ -22,11 +22,18 @@ def Humorunicraw():
 
     driver.get(url)
     cookies = driver.get_cookies()
+    print(driver.get(url))
     print(driver.current_url)
+    with requests.Session() as s:
+        s.get(url)
 
-    for cookie in cookies:
-        driver.add_cookie(cookie)
-    print(driver.current_url)
+        for cookie in s.cookies:
+            driver.add_cookie({
+                'name': cookie.name,
+                'value': cookie.value,
+                'path': '/',
+                'domain': cookie.domain
+            })
 
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
