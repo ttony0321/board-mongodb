@@ -21,10 +21,14 @@ def Humorunicraw():
     chrome_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
-    driver.get_cookies()
-    driver.get(url)
 
+    driver.get(url)
+    cookies = driver.get_cookies()
     print(driver.current_url)
+    print(cookies)
+    cookie_dict = {}
+    for cookie in cookies:
+        cookie_dict[cookie['name']] = cookie['value']
 
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
@@ -75,6 +79,7 @@ def Humorunicraw():
                 cron.db.Humoruni.insert_one(doc)
                 cron.db.All.insert_one(doc)
                 print("Hu Data Insert")
+    driver.quit()
 
 
 Humorunicraw()
