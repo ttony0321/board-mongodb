@@ -16,8 +16,10 @@ def Humorunicraw():
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--single-process")
     chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument("user-data-dir=selenium")
     chrome_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
 
     driver.get(url)
