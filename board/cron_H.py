@@ -29,11 +29,13 @@ def Humorunicraw():
     for cookie in cookies:
         driver.add_cookie(cookie)
     print(driver.current_url)
+
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
     mycraw = soup.select("#post_list > tbody > tr")
     n_url = "http://web.humoruniv.com/board/humor/"
     print('start')
+
     nodata = 1
     check = cron.db.Humoruni.find()
     c = list(check)
