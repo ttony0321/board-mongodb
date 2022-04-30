@@ -28,7 +28,7 @@ def Humorunicraw():
 
     for cookie in cookies:
         driver.add_cookie(cookie)
-
+    print(driver.current_url)
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
     mycraw = soup.select("#post_list > tbody > tr")
