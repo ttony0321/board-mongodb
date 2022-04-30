@@ -10,8 +10,6 @@ sys.path.append('/srv/board-mongodb/board')
 import cron
 # import board.cron as cron
 
-
-
 def Humorunicraw():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")

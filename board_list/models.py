@@ -2,7 +2,6 @@ from djongo import models
 from mongoengine import Document, fields
 # Create your models here.
 
-
 class Post(models.Model):
     uid = models.CharField(max_length=256, verbose_name='objectID'),
     title = models.CharField(max_length=256, verbose_name='제목'),
