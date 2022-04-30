@@ -26,9 +26,8 @@ def Humorunicraw():
     cookies = driver.get_cookies()
     print(driver.current_url)
 
-    cookie_dict = {}
     for cookie in cookies:
-        cookie_dict[cookie['name']] = cookie['value']
+        driver.add_cookie(cookie)
 
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
