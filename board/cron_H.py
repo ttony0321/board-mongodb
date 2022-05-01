@@ -28,9 +28,9 @@ def Humorunicraw():
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
 
     driver.get(url)
-
     print(driver.get(url))
     print(driver.current_url)
+
 
 
 
