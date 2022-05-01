@@ -16,22 +16,23 @@ def Humorunicraw():
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--single-process")
     chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument("--Referer=http://web.humoruniv.com/board/humor/msg.html?table=pds&mode=1904")
+    chrome_options.add_argument("--referer=http://web.humoruniv.com/board/humor/msg.html?table=pds&mode=1904")
     chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
-    url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
-
-    driver.get(url)
     cookies = driver.get_cookies()
-    print(driver.get(url))
-    print(driver.current_url)
-
     for cookie in cookies:
         driver.add_cookie({
             'name': cookie['name'],
             'value': cookie['value']
         })
+    url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
+
+    driver.get(url)
+
+    print(driver.get(url))
+    print(driver.current_url)
+
+
 
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
