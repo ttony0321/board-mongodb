@@ -32,8 +32,6 @@ def Humorunicraw():
     print(driver.current_url)
 
 
-
-
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
     mycraw = soup.select("#post_list > tbody > tr")
