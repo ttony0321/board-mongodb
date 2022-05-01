@@ -16,8 +16,7 @@ def Humorunicraw():
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--single-process")
     chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument("user-data-dir=selenium")
-    chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
+    chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     url = "http://web.humoruniv.com/board/humor/list.html?table=pds"
@@ -26,16 +25,12 @@ def Humorunicraw():
     cookies = driver.get_cookies()
     print(driver.get(url))
     print(driver.current_url)
-    with requests.Session() as s:
-        s.get(url)
 
-        for cookie in s.cookies:
-            driver.add_cookie({
-                'name': cookie.name,
-                'value': cookie.value,
-                'path': '/',
-                'domain': cookie.domain
-            })
+    for cookie in cookies:
+        driver.add_cookie({
+            'name': cookie['name'],
+            'value': cookie['value']
+        })
 
     req = driver.page_source
     soup = BeautifulSoup(req, 'html.parser')
@@ -51,7 +46,7 @@ def Humorunicraw():
         late = sort_db[0]['title']
         nodata = 0
     for i, craw in enumerate(mycraw):
-        if i < 5:
+        if i < 1:
             co = craw.select_one("td.li_sbj > a> span.list_comment_num").text[2:-1]
             comments = int(co)
             craw.select_one("td.li_sbj > a").span.decompose()
