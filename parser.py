@@ -14,8 +14,7 @@ import re
 import pymongo
 import django
 
-id = 'ttony0321'
-password = 'pang0228!'
+
 url = 'mongodb+srv://'+id+':'+password+'@boardlist.lfr3b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 #UTC 시간
 dt_utc = datetime.datetime.utcnow()
