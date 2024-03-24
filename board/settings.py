@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # import mongoengine
-# mongoengine.connect(db='boardList', host='127.0.0.1', username='ttony0321', password='07241020')
+# mongoengine.connect(db='boardList', host='127.0.0.1', username='ttony0321', password='')
 
 # MongoDB Atlas
 
@@ -26,7 +26,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zjp5r96_ro#)f%54&fxt!s13wq0!o79d5csa6ke0#rltrqj1+5'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -111,7 +111,7 @@ DATABASES = {
 #             'host': '127.0.0.1',
 #             'port': 27017,
 #             'username': 'ttony0321',
-#             'password': '07241020',
+#             'password': '',
 #             'authSource': 'admin',
 #             'authMechanism': 'SCRAM-SHA-1'
 #         }
